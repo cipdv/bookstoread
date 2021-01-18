@@ -31,9 +31,9 @@ const BookList = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {books.map(book=> {
+                    {books && books.map(book=> {
                         return (
-                            <tr>
+                            <tr key={book.id}>
                                 <td>{book.title}</td>
                                 <td>{book.genre}</td>
                                 <td>recommended by</td>
