@@ -1,7 +1,7 @@
 import React, {useContext, useEffect} from 'react'
 import booksapi from '../apis/booksapi'
 import {BooksContext} from '../context/BooksContext'
-
+  
 const BookList = (props) => {
 
     const {books, setBooks} = useContext(BooksContext);
@@ -31,13 +31,17 @@ const BookList = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td data-label="title">Braiding Sweetgrass</td>
-                        <td data-label="genre">Botany</td>
-                        <td data-label="Recommended By">Google Search</td>
-                        <td data-label="Number of pages">300</td>
-                        <td data-label="Price">$20</td>
-                    </tr>
+                    {books.map(book=> {
+                        return (
+                            <tr>
+                                <td>{book.title}</td>
+                                <td>{book.genre}</td>
+                                <td>recommended by</td>
+                                <td>{book.number_of_pages}</td>
+                                <td>{book.price}</td>
+                            </tr>
+                        )
+                    })}
                 </tbody>
             </table>
         </div>
