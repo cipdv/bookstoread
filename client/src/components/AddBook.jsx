@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import booksapi from '../apis/booksapi'
 
 const AddBook = () => {
 
@@ -6,6 +7,21 @@ const AddBook = () => {
     const [genre, setGenre] = useState("");
     const [numOfPages, setNumOfPages] = useState("");
     const [price, setPrice] = useState("");
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await booksapi.post("/", {
+                title,
+                genre,
+                number_of_pages: numOfPages,
+                price
+            })
+            console.log(response);
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
     return (
         <div>
@@ -28,7 +44,7 @@ const AddBook = () => {
                     <div className="field">                    
                         <input value={price} onChange={e => setPrice(e.target.value)} type="number" placeholder="price" />
                     </div>
-                    <button className="ui button olive">Add book  <i class="book icon"></i></button>
+                    <button type="submit" onClick={handleSubmit} className="ui button olive">Add book  <i class="book icon"></i></button>
                 </div>
             </div>
         </div>
