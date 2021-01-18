@@ -1,8 +1,9 @@
 import React from 'react'
+import '../App.css'
 
 const Header = () => {
     return (
-        <div>
+        <div className="title">
             <h2 className="ui header">
                 <i className="book icon blue"></i>
                 <div class="content">Cip's List of Books to Read</div>

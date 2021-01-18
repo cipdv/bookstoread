@@ -47,7 +47,7 @@ app.post("/api/1/bookstoread", async (req, res)=>{
         res.status(201).json({
             status: "book successfully added",
             data: {
-                books: results.rows
+                books: results.rows[0]
             }
         })
     } catch (err) {

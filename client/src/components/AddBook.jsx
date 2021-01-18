@@ -1,8 +1,10 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import booksapi from '../apis/booksapi'
+import {BooksContext} from '../context/BooksContext'
 
 const AddBook = () => {
 
+    const {addBook} = useContext(BooksContext);
     const [title, setTitle] = useState("");
     const [genre, setGenre] = useState("");
     const [numOfPages, setNumOfPages] = useState("");
@@ -17,6 +19,7 @@ const AddBook = () => {
                 number_of_pages: numOfPages,
                 price
             })
+            addBook(response.data.data.books)
             console.log(response);
         } catch (err) {
             console.log(err)
@@ -42,7 +45,7 @@ const AddBook = () => {
                         <input value={numOfPages} onChange={e => setNumOfPages(e.target.value)} type="number" placeholder="Number of pages"/>
                     </div>
                     <div className="field">                    
-                        <input value={price} onChange={e => setPrice(e.target.value)} type="number" placeholder="price" />
+                        <input value={price} onChange={e => setPrice(e.target.value)} type="number" placeholder="Price" />
                     </div>
                     <button type="submit" onClick={handleSubmit} className="ui button olive">Add book  <i class="book icon"></i></button>
                 </div>
